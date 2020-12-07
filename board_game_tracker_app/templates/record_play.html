@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h3>Record a New Play Session</h3>
+      <a href="/logout">Log Out</a>
+    </div>
+
+    <div id="form">
+      <h3>{{game.title}}</h3>
+      <form action="/record_play" method="POST">
+        {% csrf_token %}
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date">
+
+        <label for="players">Players</label>
+        <input type="text" name="players" id="players">
+
+        <label for="vps">VPs</label>
+        <input type="text" name="vps" id="vps">
+
+        <label for="comments">Comments</label>
+        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="Add Play">
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div id="header">
+      <h1>{{ user.username }}</h1>
+      <a href="/logout">Log Out</a>
+      <p>About:</p>
+      <p>Favorited Games</p>
+      <ul>
+        {% for game in user.favorites.all %}
+          <li>{{ game.title }}</li>
+        {% endfor %}
+      </ul>
+      {% if user.id == request.session.user_id %}
+        <a href="/user/{{ user.id }}/edit">Edit Profile</a>
+      {% endif %}
+    </div>
+
+
+  </div>
+</body>
+</html>

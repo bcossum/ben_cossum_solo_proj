@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div id="header">
+      <h1>Hello! <a href="/user/{{ user.id }}">{{ user.username }}</a></h1>
+      <a href="/logout">Log Out</a>
+
+      <input type="search" name="q" id="game_search" placeholder="Game Title">
+      <button onclick="searchGames()">Search</button>
+    </div>
+
+    <form action="/add_game" method="POST" enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Add Game">
+    </form>
+
+    {% for game in all_games %}
+      <a href="/game/{{game.title}}">{{ game.title }}</a>
+      {{ game.image }}    
+    {% endfor %}
+
+    <br>
+    <br>
+    <p id="test"></p>
+
+  
+  </div>
+
+  <script>
+    function searchGames(){
+      var x = document.getElementById("game_search").value;
+      document.getElementById("test").innerHTML = "boardgamegeek.com/" + x;
+    }
+  </script>
+</body>
+</html>

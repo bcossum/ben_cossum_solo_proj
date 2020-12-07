@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{user.username}}</h1>
+  <form action="/user/{{user.id}}/edit_profile" method="POST">
+    {% csrf_token %}
+    <label for="about">About</label>
+    <textarea name="about" id="about" cols="30" rows="10">{{user.about}}</textarea>
+
+    <input type="submit" value="Update">
+  </form>
+
+</body>
+</html>
