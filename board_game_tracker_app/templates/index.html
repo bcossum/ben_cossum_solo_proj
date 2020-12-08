@@ -10,9 +10,11 @@
     <div id="header">
       <h1>Hello! <a href="/user/{{ user.id }}">{{ user.username }}</a></h1>
       <a href="/logout">Log Out</a>
-
-      <input type="search" name="q" id="game_search" placeholder="Game Title">
-      <button onclick="searchGames()">Search</button>
+      <form action="/game_search" method="POST">
+        {% csrf_token %}
+        <input type="search" name="q" id="game_search" placeholder="Game Title">
+        <input type="submit" value="Search Games">
+      </form>
     </div>
 
     <form action="/add_game" method="POST" enctype='multipart/form-data'>
@@ -26,18 +28,9 @@
       {{ game.image }}    
     {% endfor %}
 
-    <br>
-    <br>
-    <p id="test"></p>
 
-  
+
   </div>
 
-  <script>
-    function searchGames(){
-      var x = document.getElementById("game_search").value;
-      document.getElementById("test").innerHTML = "boardgamegeek.com/" + x;
-    }
-  </script>
 </body>
 </html>

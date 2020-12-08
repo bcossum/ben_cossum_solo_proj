@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .models import User, Board_Game, Player, Play
 from django.contrib import messages
 from .forms import AddGameForm
-
+from xml.dom import minidom
+import requests
 
 
 def reg(request):
@@ -84,7 +85,9 @@ def game(request, game_title):
   context = {
     'game': Board_Game.objects.get(title=game_title)
   }
+  print(context)
   return render(request, 'game.html', context)
+
 
 def add_fav(request, game_title):
   game = Board_Game.objects.get(title=game_title)
@@ -98,3 +101,25 @@ def record_play(request, game_title):
     'game': Board_Game.objects.get(title=game_title)
   }
   return render(request, 'record_play.html', context)
+
+
+def game_search_api(term):
+  response = requests.get(f'https://boardgamegeek.com//xmlapi/search?search={term}')
+  doc = minidom.parseString(response.text)
+  return {
+    game.getAttribute('objectid'): {
+      'name': game.getElementsByTagName('name')[0].firstChild.data,
+      'year': game.getElementsByTagName('yearpublished')[0].firstChild.data
+    }
+    for game in doc.getElementsByTagName('boardgame')
+  }
+
+
+def game_search(request):
+  return redirect(f"/game_search/{request.POST['q']}")
+
+
+def game_search_results(request, term):
+  results = game_search_api(term)
+  print(results)
+  return render(request, 'game_search.html', results)
