@@ -6,7 +6,13 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>{{ game.title }}</h1>
+  <h1>{{ game.name }}</h1>
+  {% for id, game in results.items %}
+    <h1>{{game.name}}</h1>
+    <img src="{{game.image}}" alt="Wingspan Cover" style="width: 200px;">
+    <p>Players: {{game.minplayers}} - {{game.maxplayers}}</p>
+    <html xmlns="http://www.w3.org/1999/xhtml">{{game.description}}</html>
+  {% endfor %} 
   <p>Description:</p>
   <a href="/game/{{game.title}}/add_fav">Add to Favorites</a>
   <a href="/game/{{game.title}}/record_play">Record Play Session</a>

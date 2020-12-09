@@ -122,4 +122,24 @@ def game_search(request):
 def game_search_results(request, term):
   results = game_search_api(term)
   print(results)
-  return render(request, 'game_search.html', results)
+  return render(request, 'game_search.html', { 'results': results })
+
+def game_page_api(game_id):
+  response = requests.get(f'https://www.boardgamegeek.com/xmlapi/boardgame/{game_id}')
+  doc = minidom.parseString(response.text)
+  return {
+    game.getAttribute('objectid'): {
+      'name': game.getElementsByTagName('name')[0].firstChild.data,
+      'year': game.getElementsByTagName('yearpublished')[0].firstChild.data,
+      'image': game.getElementsByTagName('image')[0].firstChild.data,
+      'description': game.getElementsByTagName('description')[0].firstChild.data,
+      'minplayers': game.getElementsByTagName('minplayers')[0].firstChild.data,
+      'maxplayers': game.getElementsByTagName('maxplayers')[0].firstChild.data,
+    }
+    for game in doc.getElementsByTagName('boardgame')
+  }
+
+def game_page(request, game_id):
+  results = game_page_api(game_id)
+  print(results)
+  return render(request, 'game.html', { 'results': results })

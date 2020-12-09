@@ -7,10 +7,19 @@
 </head>
 <body>
   <div id="container">
-    {% for key, value in results.items %}
-      <p>{{value}}</p>
+
+  <table>
+    <tr>
+      <th>Game Title</th>
+      <th>Year</th>
+    </tr>
+    {% for id, game in results.items %}
+      <tr>
+        <td><a href="/game/{{id}}">{{game.name}}</a></td>
+        <td>{{game.year}}</td>
+      </tr>
     {% endfor %}
-  
+  </table>
   </div>
 </body>
 </html>
