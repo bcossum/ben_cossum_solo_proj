@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <div id="container">
     <div id="header">
@@ -14,24 +16,45 @@
 
     <div id="form">
       <h3>{{game.title}}</h3>
-      <form action="/record_play" method="POST">
+      <img src="{{game.image}}" alt="{{game.title}} Cover" style="width: 250px;">
+      <form action="/game/{{game.id}}/view_play/{{play.id}}/submit" method="POST">
         {% csrf_token %}
         <label for="date">Date:</label>
         <input type="date" name="date" id="date">
 
-        <label for="players">Players</label>
-        <input type="text" name="players" id="players">
+        {% for player in play.players.all %}
+          <p>{{player.name}}:</p>
+          
+          <label for="vps">Points:</label>
+          <input type="text" name="vps_{{player.id}}" id="vps">
 
-        <label for="vps">VPs</label>
-        <input type="text" name="vps" id="vps">
+          <input type="text" name="id" value="{{player.id}}">
+
+          <label for="winner">Winner:</label>
+          <input type="checkbox" name="winner" id="winner" value="{{player.id}}">
+        {% endfor %}
 
         <label for="comments">Comments</label>
         <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
 
         <input type="submit" value="Add Play">
       </form>
+
+      <form action="/game/{{game.bg_id}}/record_play/{{play.id}}/add_player" method="POST">
+        {% csrf_token %}
+        <label for="name">Player Name:</label>
+        <input type="text" name="name" id="name">
+
+        <input type="submit" value="Add Player">
+      </form>
+
+      {% for item in user.created_players.all  %}
+        <p>{{item.name}}</p>
+      {% endfor %}
+
     </div>
 
   </div>
 </body>
+
 </html>

@@ -10,6 +10,7 @@
     <div id="header">
       <h1>Hello! <a href="/user/{{ user.id }}">{{ user.username }}</a></h1>
       <a href="/logout">Log Out</a>
+
       <form action="/game_search" method="POST">
         {% csrf_token %}
         <input type="search" name="q" id="game_search" placeholder="Game Title">
@@ -17,15 +18,20 @@
       </form>
     </div>
 
+    {% comment %} 
+    Test code to add game without pulling data from bgg
+
     <form action="/add_game" method="POST" enctype='multipart/form-data'>
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" value="Add Game">
-    </form>
+    </form> 
+    
+    {% endcomment %}
 
-    {% for game in all_games %}
-      <a href="/game/{{game.title}}">{{ game.title }}</a>
-      {{ game.image }}    
+    {% for play in user.plays.all %}
+      <p></p>
+      <a href="/game/{{play.game.id}}/view_play/{{play.id}}/submit"><img src="{{play.game.image}}" alt="{{play.game.title}} Cover" style="width: 250px;"> </a>
     {% endfor %}
 
 

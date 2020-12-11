@@ -15,6 +15,7 @@
       <ul>
         {% for game in user.favorites.all %}
           <li>{{ game.title }}</li>
+          <img src="{{game.image}}" alt="{{game.title}} cover" style="width: 250px;">
         {% endfor %}
       </ul>
       {% if user.id == request.session.user_id %}

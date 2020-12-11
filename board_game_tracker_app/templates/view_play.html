@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{user.username}}</h1>
+  {{play.game.title}}
+  <img src="{{play.game.image}}" alt="" style='width: 250px;'>
+  <p>test 1</p>
+  {% for player in play.score.all %}
+    {{player.player.name}}
+    {{player.vps}}
+    
+
+  <br><br>
+  <p>test 2</p>
+  {% for player in play.players.all %}
+    {{player.name}}
+    {{player.vps}}
+  {% endfor %}
+</html>
