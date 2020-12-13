@@ -29,7 +29,7 @@
 
       <div class="left_subcontent">
         
-        <img src="{{play.game.image}}" alt="" style='width: 250px;'>
+        <a href="/game/{{play.game.bg_id}}"><img src="{{play.game.image}}" alt="" style='width: 250px;'></a>
       </div>
     
       <div class="right_subcontent">
@@ -43,10 +43,11 @@
         {% for player in play.score.all %}
           <tr>
             <td>{{player.player.name}}</td>
-            <td>Score: {{player.vps}}</td>
+            <td>{{player.vps}}</td>
           </tr>
         {% endfor %}  
         </table>
+        <a href="/game/{{play.game.id}}/edit_play/{{play.id}}" class="button">Edit Play</a>
       </div>
 
     </div>

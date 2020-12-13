@@ -56,7 +56,11 @@
 
         <div class="right_subcontent">  
           <p>Players: {{game.minplayers}} - {{game.maxplayers}}</p>
-          <p>{{game.description}}</p>
+          <p>
+          {% autoescape off %}
+            {{game.description}}
+          {% endautoescape %}
+          </p>
         </div>
 
 

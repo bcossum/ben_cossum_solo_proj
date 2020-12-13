@@ -35,7 +35,6 @@ def login(request):
 def home(request):
   context = {
     'user': User.objects.get(id=request.session['user_id']),
-    'all_games': Board_Game.objects.all()
   }
   context['form'] = AddGameForm()
   return render(request, 'index.html', context)
@@ -45,22 +44,6 @@ def logout(request):
   return redirect('/')
 
 
-def add_game(request):
-  context = {}
-  if request.method == "POST":
-    form = AddGameForm(request.POST, request.FILES)
-    if form.is_valid():
-      title = form.cleaned_data.get('title')
-      image = form.cleaned_data.get('image')
-      obj = Board_Game.objects.create(
-        title = title,
-        image = image
-      )
-      obj.save()
-      print(obj)
-  return redirect('/home')
-
-
 def profile(request, user_id):
   context = {
     'user': User.objects.get(id=user_id)
@@ -68,10 +51,11 @@ def profile(request, user_id):
   return render(request, 'profile.html', context)
 
 
+
+#Not Added Yet
 def edit_profile(request, user_id):
   context = {
     'user': User.objects.get(id=user_id),
-    'all_games': Board_Game.objects.all()
   }
   if request.method == 'POST':
     current_user = User.objects.get(id=user_id),
@@ -80,6 +64,22 @@ def edit_profile(request, user_id):
     return redirect(f'/user/{user.id}')
   return render(request, 'edit_profile.html', context)
 
+def edit_play(request, game_id, play_id):
+  context = {
+    'play': Play.objects.get(id=play_id),
+    'user': User.objects.get(id=request.session['user_id'])
+  }
+  if request.method == 'POST':
+    #UPDATE PLAY
+    this_play=Play.objects.get(id=play_id)
+    this_play.date=request.POST['date']
+    this_play.winner=Player.objects.get(id=request.POST['winner'])
+    for player in this_play.score.all():
+      player.vps=request.POST[f'vps_{player.id}']
+      player.save()
+    this_play.save()
+    return redirect(f'/game/{game_id}/view_play/{play_id}/submit')
+  return render(request, 'edit_play.html', context)
 
 def game(request, game_title):
   context = {

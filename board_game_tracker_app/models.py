@@ -1,6 +1,8 @@
 from django.db import models
 import re
 import bcrypt
+import datetime 
+from datetime import date
 from django.utils import timezone
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -98,12 +100,14 @@ class Board_Game(models.Model):
     return self.title
 
 class Play(models.Model):
-  date = models.DateField(default=timezone.now, blank=True)
+  date = models.DateField(default=date.today)
   comments = models.TextField(null=True, blank=True)
   game = models.ForeignKey(Board_Game, on_delete=models.SET_NULL, null=True, blank=True)
   winner = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='num_of_wins')
   created_by = models.ForeignKey(User, related_name='plays', on_delete=models.CASCADE, null=True, blank=True)
   players = models.ManyToManyField(Player, related_name="plays", through="Score")
+  class Meta:
+    ordering = ('date',)
 
 
 class Score(models.Model):

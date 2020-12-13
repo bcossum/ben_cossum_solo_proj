@@ -7,7 +7,6 @@ urlpatterns = [
     path('reg', views.reg),
     path('home', views.home),
     path('logout', views.logout),
-    path('add_game', views.add_game),
     path('user/<int:user_id>', views.profile),
     path('user/<int:user_id>/edit', views.edit_profile),
     path('user/<int:user_id>/edit_profile', views.edit_profile),
@@ -20,4 +19,5 @@ urlpatterns = [
     path('game_search/<str:term>', views.game_search_results),
     path('game/<int:game_id>/record_play/<int:play_id>/add_player', views.add_player),
     path('game/<int:game_id>/view_play/<int:play_id>/submit', views.submit_play),
+    path('game/<int:game_id>/edit_play/<int:play_id>', views.edit_play),
 ]
