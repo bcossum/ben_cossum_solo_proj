@@ -7,7 +7,7 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet'>
-  <title>Document</title>
+  <title>Board Game Tracker</title>
 </head>
 
 <body>
@@ -45,23 +45,26 @@
         <form action="/game/{{game.id}}/view_play/{{play.id}}/submit" method="POST">
           {% csrf_token %}
 
-          <div class="input_block">
-            <label for="date">Date:</label>
-            <input type="date" name="date" id="date">
-          </div>
-
           {% for player in play.players.all %}
             <div class="player_block">
               <p class="player_name">{{player.name}}</p>
               
-              <label for="vps">Points:</label>
-              <input type="text" name="vps_{{player.id}}" id="vps">
-              <input type="hidden" name="id" value="{{player.id}}">
-                  
-              <label for="winner">Winner:</label>
-              <input type="checkbox" name="winner" id="winner" value="{{player.id}}">
+              <div class="input_block">
+                <label for="vps">Points:</label>
+                <input type="text" name="vps_{{player.id}}" id="vps">
+                <input type="hidden" name="id" value="{{player.id}}">
+              </div>
+              <div class="input_block">
+                <label for="winner">Winner:</label>
+                <input type="checkbox" name="winner" id="winner" value="{{player.id}}">
+              </div>  
             </div>
           {% endfor %}
+
+          <div class="input_block">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date">
+          </div>
 
           <div class="input_block">
             <label for="comments">Comments:</label><br>
