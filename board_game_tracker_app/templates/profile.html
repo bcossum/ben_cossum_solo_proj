@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet'>
   <title>Document</title>
 </head>
 <body>
-  <div class="container">
+  <div id="container">
+
     <div id="header">
-      <h1>{{ user.username }}</h1>
-      <a href="/logout">Log Out</a>
-      <p>About:</p>
-      <p>Favorited Games</p>
-      <ul>
-        {% for game in user.favorites.all %}
-          <li>{{ game.title }}</li>
-          <img src="{{game.image}}" alt="{{game.title}} cover" style="width: 250px;">
-        {% endfor %}
-      </ul>
-      {% if user.id == request.session.user_id %}
-        <a href="/user/{{ user.id }}/edit">Edit Profile</a>
-      {% endif %}
+      <h1 class="logo">Board Game Tracker</h1>
+      
+      <div id="profile">
+        <h3>Hello <a href="/user/{{ user.id }}">{{ user.username }}</a></h3>
+        <a href="/logout" id="logout">Log Out</a>
+      </div>
+      
+    </div>
+
+    <div class="content">
+
+      <h3>{{ user.username }}'s Favorited Games</h3>
+  
+      {% for game in user.favorites.all %}
+        <div class="cover_grid">
+          
+          <a href="/game/{{game.bg_id}}"><img src="{{game.image}}" alt="{{game.title}} cover"></a>
+          <p>{{ game.title }}</p>
+        </div>
+      {% endfor %}
+
     </div>
 
 

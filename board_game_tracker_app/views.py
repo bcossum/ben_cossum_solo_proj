@@ -218,5 +218,8 @@ def game_page_api(game_id):
 
 def game_page(request, game_id):
   results = game_page_api(game_id)
+  context = {
+    'user': User.objects.get(id=request.session['user_id'])
+  }
   print(results)
-  return render(request, 'game.html', { 'results': results })
+  return render(request, 'game.html', { 'results': results }, context)

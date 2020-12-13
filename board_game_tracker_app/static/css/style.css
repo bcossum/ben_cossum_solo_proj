@@ -1,0 +1,351 @@
+*{
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+html, body{
+  height: 100%;
+}
+
+h3, h3>a{
+  background-color: transparent;
+  color: snow;
+}
+
+table{
+  margin: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td{
+  color: white;
+  background-color: rgb(90, 16, 16);
+  padding: 10px;
+  font-size: large;
+  border-bottom: 1px ridge white;
+}
+
+
+#container{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  background-color: black;
+  justify-content: center;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+#header{
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  justify-content: space-between;
+  background-color: black;
+}
+
+#navbar{
+  display: block;
+  width: 100%;
+  contain: content;
+  padding: 5px;
+  background-color: transparent;
+  padding-bottom: 10px;
+}
+
+#profile{
+  background-color: transparent;
+  margin-right: 20px;
+}
+
+#logout{
+  margin-left: 60px;
+  background-color: transparent;
+  color: snow;
+}
+
+#game_search, .game_search, .form_submit{
+  padding: 5px;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  background-image: linear-gradient(to right, black, rgb(90, 16, 16) 25%, rgb(90, 16, 16) 75%, black);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding-bottom: 4%;
+}
+
+.cover_grid>a>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 250px;
+}
+
+.content>h3{
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+}
+
+.content_header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: transparent;
+  padding: 10px;
+  border-bottom: 1px ridge;
+
+}
+
+.game_content{
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: wrap;
+  align-content: flex-start;
+  background-image: linear-gradient(to right, black, rgb(90, 16, 16) 25%, rgb(90, 16, 16) 75%, black);
+  padding: 20px;
+  padding-bottom: 5%;
+  border-radius: 5px;
+  margin: 5px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.game_content p, h1{
+  background-color: transparent;
+  color: white;
+}
+
+.left_subcontent{
+  display: flex;
+  flex-flow: column wrap;
+  width: 22%;
+  background-color: transparent;
+  align-content: center;
+  margin-top: 2%;
+}
+
+.left_subcontent>form{
+  background-color: transparent;
+  width: fit-content;
+  align-self: center;
+}
+
+.button{
+  background-color: black;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  width: 145px;
+}
+
+.right_subcontent{
+  width: 65%;
+  padding: 20px;
+  background-color: transparent;
+  margin-top: 2%;
+}
+
+.right_subcontent>p{
+  padding: 20px;
+}
+
+.right_subcontent>p:first-child{
+  border-bottom: 2px solid white;
+}
+
+.right_subcontent>h2{
+  background-color: transparent;
+  color: white;
+  margin-left: 20px;
+}
+
+.right_subcontent form{
+  background-color: transparent;
+  color: white;
+  padding: 20px;
+}
+
+.input_block, .player_block{
+  padding: 5px;
+  background-color: transparent;
+  font-size: 16pt;
+}
+
+form:first-child{
+  border-bottom: 1px solid white;
+}
+
+.input_block>input, textarea{
+  color: white;
+  padding: 5px;
+}
+
+.input_block>label, .input_block>p, .player_block>label, .player_block>p{
+  background-color: transparent;
+  padding: 5px;
+}
+
+.player_block{
+  font-size: 16pt;
+  padding: 5px;
+}
+
+.player_name{
+  border-bottom: 2px solid white;
+  font-weight: bold;
+  font-size: 24pt;
+  width: 25%;
+  margin-bottom: 10px;
+}
+
+.cover_grid, .left_subcontent>img{
+  display: inline-block;
+  width: 250px;
+  contain: content;
+  background-color: black;
+  margin: 10px;
+  box-shadow: 4px 4px 10px rgb(80, 80, 80);
+  padding: 2px;
+  text-align: center;
+}
+
+.cover_grid>p{
+  background-color: rgb(80, 19, 19);
+  color: white;
+}
+
+.logo{
+  display: inline-block;
+  font-family:'Monofett', 'Times New Roman', Times, serif;
+  font-size: 45pt;
+  font-weight: bold;
+  padding: 5px;
+  background-color: transparent;
+  color: snow;
+}
+
+.search_form{
+  float: right;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.played_game, .played_game>h2, .played_game>p, .play_data>h1{
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+.played_game{
+  margin-left: 6px;
+}
+
+.played_game, .play_data{
+  display: inline-flex;
+  align-content: flex-start;
+  flex-flow: column wrap;
+  border-top: 1px solid snow;
+  padding: 20px;
+  width: 46%;
+  vertical-align: top;
+  background-color: transparent;
+}
+
+.play_data{
+  padding-top: 80px;
+}
+
+#game_search{
+  color: white;
+  border: 2px transparent white;
+}
+
+.form_submit{
+  border: 1px transparent white;
+  border-radius: 5px;
+  color: white;
+  background-color:  black;
+  box-shadow: whitesmoke 1px 1px 2px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+}
+
+.search_results{
+  text-decoration: none;
+  background-color: transparent;
+  color: white;
+}
+
+.search_content{
+  border-radius: 5px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.search_content>table{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.search_content table tr th{
+  font-family: 'Monofett';
+  font-weight: normal;
+}
+
+.search_content table tr th, .search_content table tr td{
+  background-image: linear-gradient(to right, black, rgb(90, 16, 16) 25%, rgb(90, 16, 16) 75%, black);
+  font-size: 24pt;
+}
+
+.search_content table tr th:first-child, .search_content table tr td:first-child{
+  text-align: left;
+  background-image: linear-gradient(to right, black, rgb(90, 16, 16) 25%);
+}
+
+.search_content table tr th:nth-child(2), .search_content table tr td:nth-child(2){
+  background-image: linear-gradient(to left, black, rgb(90, 16, 16) 75%);
+}
+
+.center{
+  text-align: center;
+}
+
+.play_table{
+  border: none;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-radius: 5px;
+  width: 45%;
+}
+
+.play_table tr th, .play_table tr td{
+  border-bottom: none;
+  text-align: center;
+}
+
+.play_table tr th{
+  text-decoration: underline;
+  font-weight: normal;
+  font-family: "Monofett";
+  font-size: 24pt;
+}
+
