@@ -222,3 +222,9 @@ def game_page(request, game_id):
   }
   print(results)
   return render(request, 'game.html', context)
+
+def all_plays(request, user_id):
+  context = {
+    'user': User.objects.get(id=user_id)
+  }
+  return render(request, 'all_plays.html', context)

@@ -10,6 +10,7 @@ urlpatterns = [
     path('user/<int:user_id>', views.profile),
     path('user/<int:user_id>/edit', views.edit_profile),
     path('user/<int:user_id>/edit_profile', views.edit_profile),
+    path('user/<int:user_id>/all_plays', views.all_plays),
     path('game/<int:game_id>', views.game_page),
     path('game/<int:game_id>/add_fav', views.add_fav),
     path('game/<int:game_id>/record_play', views.record_play),
