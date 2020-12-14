@@ -5,7 +5,6 @@ from .forms import AddGameForm
 from xml.dom import minidom
 import requests
 
-
 def reg(request):
   if request.method == 'POST':
     errors = User.objects.user_validator(request.POST)
@@ -51,7 +50,6 @@ def profile(request, user_id):
   return render(request, 'profile.html', context)
 
 
-
 #Not Added Yet
 def edit_profile(request, user_id):
   context = {
@@ -70,7 +68,6 @@ def edit_play(request, game_id, play_id):
     'user': User.objects.get(id=request.session['user_id'])
   }
   if request.method == 'POST':
-    #UPDATE PLAY
     this_play=Play.objects.get(id=play_id)
     this_play.date=request.POST['date']
     this_play.winner=Player.objects.get(id=request.POST['winner'])
@@ -80,13 +77,6 @@ def edit_play(request, game_id, play_id):
     this_play.save()
     return redirect(f'/game/{game_id}/view_play/{play_id}/submit')
   return render(request, 'edit_play.html', context)
-
-def game(request, game_title):
-  context = {
-    'game': Board_Game.objects.get(title=game_title)
-  }
-  print(context)
-  return render(request, 'game.html', context)
 
 
 def add_fav(request, game_id):
@@ -199,14 +189,22 @@ def game_search(request):
 def game_search_results(request, term):
   results = game_search_api(term)
   print(results)
-  return render(request, 'game_search.html', { 'results': results })
+  context = {
+    'user': User.objects.get(id=request.session['user_id']),
+    'results': results
+  }
+  return render(request, 'game_search.html', context)
 
 def game_page_api(game_id):
   response = requests.get(f'https://www.boardgamegeek.com/xmlapi/boardgame/{game_id}')
   doc = minidom.parseString(response.text)
+
   return {
     game.getAttribute('objectid'): {
-      'name': game.getElementsByTagName('name')[0].firstChild.data,
+      'name': next(
+        (name for name in game.getElementsByTagName('name') if name.getAttribute('primary') == 'true'),
+        game.getElementsByTagName('name')[0]
+      ).firstChild.data,
       'year': game.getElementsByTagName('yearpublished')[0].firstChild.data,
       'image': game.getElementsByTagName('image')[0].firstChild.data,
       'description': game.getElementsByTagName('description')[0].firstChild.data,
@@ -219,7 +217,8 @@ def game_page_api(game_id):
 def game_page(request, game_id):
   results = game_page_api(game_id)
   context = {
-    'user': User.objects.get(id=request.session['user_id'])
+    'user': User.objects.get(id=request.session['user_id']),
+    'results': results
   }
   print(results)
-  return render(request, 'game.html', { 'results': results }, context)
+  return render(request, 'game.html', context)

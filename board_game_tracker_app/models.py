@@ -46,7 +46,7 @@ class UserManager(models.Manager):
           errors['username'] = 'Username already exists in database'
 
     if len(postData['username']) < 2:
-      errors['username'] = "Username must be at least two characters long"    
+      errors['username'] = "Username must be at least two characters long"
     
     if not EMAIL_REGEX.match(postData['email']):      
       errors['email'] = "Invalid email address!"

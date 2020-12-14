@@ -21,6 +21,16 @@
       </div>
       
     </div>
+    <div id="navbar">
+      <a href="/home">Home</a>
+      <a href="/user/{{user.id}}/all_plays">All Plays</a>
+      <a href="/user/{{ user.id }}">Favorites</a>
+      <form action="/game_search" method="POST" class='search_form'>
+        {% csrf_token %}
+        <input type="search" name="q" id="game_search" placeholder="Game Title...">
+        <input type="submit" value="Search" class="form_submit">
+      </form>
+    </div>
 
     <div class="content">
     

@@ -11,7 +11,6 @@ urlpatterns = [
     path('user/<int:user_id>/edit', views.edit_profile),
     path('user/<int:user_id>/edit_profile', views.edit_profile),
     path('game/<int:game_id>', views.game_page),
-    path('game/<str:game_title>', views.game),
     path('game/<int:game_id>/add_fav', views.add_fav),
     path('game/<int:game_id>/record_play', views.record_play),
     path('game/<int:game_id>/record_play/<int:play_id>', views.record_play_form),
