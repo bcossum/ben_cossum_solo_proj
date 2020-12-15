@@ -22,7 +22,7 @@ class UserManager(models.Manager):
       errors['username'] = "Username must be at least two characters long"
     
     if not EMAIL_REGEX.match(postData['email']):      
-      errors['email'] = ("Invalid email address!")
+      errors['email'] = "Invalid email address!"
 
     if len(postData['password']) < 8:
       errors['password'] = "Password must be at least eight characters"
